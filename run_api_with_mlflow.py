@@ -40,7 +40,7 @@ def main():
         return 1
     
     # Carregar a API
-    print("\n📦 2. Carregando API com MLflow...")
+    print("\n2. Carregando API com MLflow...")
     try:
         sys.path.append('src')
         import app
