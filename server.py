@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """
 Servidor HTTP para a API de Credit Score.
 Expõe a API em uma porta local para requisições HTTP.
@@ -7,7 +6,6 @@ Expõe a API em uma porta local para requisições HTTP.
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 import sys
-import os
 import json
 import logging
 
@@ -21,9 +19,9 @@ sys.path.append('src')
 # Importar a API
 try:
     import app as credit_api
-    logger.info("✅ API de Credit Score carregada com sucesso!")
+    logger.info("API de Credit Score carregada com sucesso!")
 except Exception as e:
-    logger.error(f"❌ Erro ao carregar API: {e}")
+    logger.error(f"Erro ao carregar API: {e}")
     sys.exit(1)
 
 # Criar aplicação Flask
@@ -114,20 +112,20 @@ def model_info():
     return jsonify(credit_api.model_info)
 
 if __name__ == '__main__':
-    print("🚀 SUBINDO SERVIDOR HTTP DA API DE CREDIT SCORE")
+    print("SUBINDO SERVIDOR HTTP DA API DE CREDIT SCORE")
     print("=" * 60)
-    print(f"📊 Modelo: {credit_api.model_info.get('model_name', 'N/A')}")
-    print(f"📋 Versão: {credit_api.model_info.get('version', 'N/A')}")
-    print(f"🔗 Fonte: {credit_api.model_info.get('source', 'N/A')}")
+    print(f"Modelo: {credit_api.model_info.get('model_name', 'N/A')}")
+    print(f"Versão: {credit_api.model_info.get('version', 'N/A')}")
+    print(f"Fonte: {credit_api.model_info.get('source', 'N/A')}")
     print("=" * 60)
-    print("🌐 Endpoints disponíveis:")
-    print("   GET  / - Health check")
-    print("   POST /predict - Predição de credit score") 
-    print("   GET  /predict - Informações do endpoint")
-    print("   GET  /model-info - Informações do modelo")
+    print("Endpoints disponíveis:")
+    print("GET  / - Health check")
+    print("POST /predict - Predição de credit score") 
+    print("GET  /predict - Informações do endpoint")
+    print("GET  /model-info - Informações do modelo")
     print("=" * 60)
-    print("🔥 Servidor rodando em: http://localhost:5000")
-    print("💡 Para parar: Ctrl+C")
+    print("ervidor rodando em: http://localhost:5000")
+    print("Para parar: Ctrl+C")
     print("=" * 60)
     
     # Subir servidor

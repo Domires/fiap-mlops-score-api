@@ -1,0 +1,1 @@
+# Pasta de testes para a API de Credit Score
