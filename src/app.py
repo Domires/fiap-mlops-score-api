@@ -104,7 +104,7 @@ def load_model():
     # Verificar se deve forçar o uso do MLflow
     force_mlflow = os.getenv('FORCE_MLFLOW', 'false').lower() == 'true'
     if force_mlflow:
-        logger.info("🔒 MODO FORÇADO: Apenas MLflow será usado (FORCE_MLFLOW=true)")
+        logger.info(" Apenas MLflow será usado (FORCE_MLFLOW=true)")
     
     # Estratégia 1: Tentar MLflow
     try:
@@ -134,7 +134,7 @@ def load_model():
                     "run_id": latest_version.run_id,
                     "source": "mlflow_registry"
                 }
-                logger.info(f"✅ Modelo carregado do MLflow Registry: v{latest_version.version}")
+                logger.info(f"Modelo carregado do MLflow Registry: v{latest_version.version}")
                 return
         except Exception as registry_error:
             logger.warning(f"Falha no Model Registry: {registry_error}")
@@ -162,8 +162,8 @@ def load_model():
         
         # Se modo forçado está ativo, falhar aqui
         if force_mlflow:
-            logger.error("❌ ERRO: FORCE_MLFLOW=true mas MLflow não está disponível!")
-            logger.error("💡 Verifique: python test_mlflow_connection.py")
+            logger.error("ERRO: FORCE_MLFLOW=true mas MLflow não está disponível!")
+            logger.error("Verifique: python test_mlflow_connection.py")
             raise Exception(f"MLflow obrigatório mas não disponível: {mlflow_error}")
     
     # Estratégia 2: Modelo local (apenas se não forçar MLflow)
@@ -181,7 +181,7 @@ def load_model():
                 else:
                     model_info = {"model_name": "local_model", "version": "unknown", "source": "local_file"}
                 
-                logger.info("✅ Modelo local carregado com sucesso!")
+                logger.info("Modelo local carregado com sucesso!")
                 return
         except Exception as local_error:
             logger.warning(f"Falha ao carregar modelo local: {local_error}")
@@ -191,7 +191,7 @@ def load_model():
         create_mock_model()
     else:
         # Se chegou aqui no modo forçado, é porque MLflow falhou
-        logger.error("❌ ERRO: Não foi possível carregar modelo do MLflow no modo forçado")
+        logger.error("ERRO: Não foi possível carregar modelo do MLflow no modo forçado")
         raise Exception("MLflow obrigatório mas modelo não pôde ser carregado")
 
 # Carrega o modelo na inicialização
